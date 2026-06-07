@@ -3,7 +3,7 @@ import axios from 'axios';
 // ─── Base URL ──────────────────────────────────────────────────────────────
 // In development, set VITE_API_URL in .env.local
 // e.g. VITE_API_URL=http://localhost:3000
-const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';
+const BASE_URL = import.meta.env.VITE_API_URL ?? 'https://countries-api-ti4f.onrender.com';
 
 const TOKEN_KEY = 'dc_token';
 
