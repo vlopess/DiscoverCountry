@@ -1,4 +1,6 @@
-# 🌍 DiscoverCountry
+![](./src/assets/logo.png)
+
+# DiscoverCountry
 
 Quiz educativo de Bandeiras e Capitais de países do mundo.
 
