@@ -1,0 +1,204 @@
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  animation: fadeUp 0.25s var(--ease) both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Subject */
+.subject {
+  padding: 32px 32px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 140px;
+}
+
+.flagContainer {
+  width: 100%;
+  max-width: 280px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+.flag {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+}
+
+.textSubject {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.subjectLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--gray-100);
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+}
+
+.subjectText {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* Prompt */
+.prompt {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 20px 32px 0;
+  line-height: 1.5;
+}
+
+/* Options */
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 20px 24px 24px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--r-lg);
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--t-fast) var(--ease),
+              background var(--t-fast) var(--ease),
+              box-shadow var(--t-fast) var(--ease),
+              transform var(--t-fast) var(--ease);
+  position: relative;
+}
+
+.option:hover:not(:disabled) {
+  border-color: var(--gray-400);
+  background: var(--gray-50);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.option:disabled { cursor: default; }
+
+.optLabel {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r-sm);
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.optText {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  flex: 1;
+  line-height: 1.4;
+}
+
+.optIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* States */
+.state_correct {
+  border-color: #16A34A !important;
+  background: #F0FDF4 !important;
+}
+.state_correct .optLabel { background: #16A34A; color: var(--white); }
+.state_correct .optText  { color: #15803D; }
+.state_correct .optIcon  { color: #16A34A; }
+
+.state_wrong {
+  border-color: #DC2626 !important;
+  background: #FEF2F2 !important;
+}
+.state_wrong .optLabel { background: #DC2626; color: var(--white); }
+.state_wrong .optText  { color: #B91C1C; }
+.state_wrong .optIcon  { color: #DC2626; }
+
+.state_dimmed {
+  opacity: 0.35;
+}
+
+/* Feedback */
+.feedback {
+  margin: 0 24px 24px;
+  padding: 12px 16px;
+  border-radius: var(--r-lg);
+  font-size: 14px;
+  font-weight: 400;
+  animation: fadeIn 0.2s var(--ease) both;
+}
+
+.fb_correct {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #15803D;
+}
+
+.fb_wrong,
+.fb_timeout {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #B91C1C;
+}
+
+.fb_timeout {
+  background: #FFFBEB;
+  border-color: #FDE68A;
+  color: #92400E;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .options { grid-template-columns: 1fr; }
+  .subject { min-height: 110px; }
+  .subjectText { font-size: 28px; }
+  .prompt { padding: 16px 20px 0; }
+  .options { padding: 16px 16px 20px; }
+}
