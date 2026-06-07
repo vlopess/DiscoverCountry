@@ -43,7 +43,7 @@ export function Ranking() {
         <div className={styles.divider} />
 
         {/* Table */}
-        {ranking.data.meta.total === 0 ? (
+        {ranking.meta.total === 0 ? (
           <div className={styles.empty}>
             <p>Nenhum resultado ainda.</p>
             <button className={styles.playBtn} onClick={() => navigate('/home')}>Jogar agora</button>
@@ -56,11 +56,11 @@ export function Ranking() {
               <span className={`${styles.th} ${styles.thScore}`}>Score</span>
             </div>
 
-            {ranking.data.data.map((entry, i) => {
+            {ranking.data.map((entry, i) => {
               const isMe = entry.user.name.toLowerCase() === user?.name.toLowerCase();
               return (
                 <div
-                  key={`${entry.position}-${entry.user.name}-${i}`}
+                  key={`${i + 1}-${entry.user.name}-${i}`}
                   className={`${styles.row} ${isMe ? styles.rowMe : ''}`}
                   style={{ animationDelay: `${i * 0.04}s` }}
                 >

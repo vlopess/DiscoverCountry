@@ -4,7 +4,7 @@ import type {
   AuthState,
   LoginPayload,
   RegisterPayload,
-  ApiUser,
+  ApiUser, ApiResponse,
 } from '../types';
 
 const USER_KEY = 'dc_user';
@@ -37,12 +37,12 @@ function getStoredAuth(): AuthState | null {
 // ─── API calls ─────────────────────────────────────────────────────────────
 
 async function login(payload: LoginPayload): Promise<AuthState> {
-  const { data } = await api.post<AuthResponse>('/api/auth/login', payload);
+  const { data } = await api.post<ApiResponse<AuthResponse>>('/api/auth/login', payload);
   return persistAuth(data.data.token, data.data.user);
 }
 
 async function register(payload: RegisterPayload): Promise<AuthState> {
-  const { data } = await api.post<AuthResponse>('/api/auth/register', payload);
+  const { data } = await api.post<ApiResponse<AuthResponse>>('/api/auth/register', payload);
   return persistAuth(data.data.token, data.data.user);
 }
 

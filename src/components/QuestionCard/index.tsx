@@ -34,7 +34,7 @@ export function QuestionCard({ question, selectedAnswer, answerState, onAnswer }
           <div className={styles.flagContainer}>
             <img
               src={country.flags.png}
-              alt={country.flags.alt ?? `Bandeira de ${country.name.common}`}
+              alt={country.flags.alt ?? `Bandeira de ${country.name}`}
               className={styles.flag}
             />
           </div>

@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import logo from '../../assets/logo.png';
 import styles from './Navbar.module.css';
@@ -7,7 +7,6 @@ import styles from './Navbar.module.css';
 export function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
 
   const initial = user?.name?.charAt(0).toUpperCase() ?? '?';
 

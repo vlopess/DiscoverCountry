@@ -36,13 +36,9 @@ export interface Country {
   region: string;
 }
 
-// /api/countries paginated response
-export interface CountriesPage {
-  data: Country[];
-  total: number;
-  page: number;
-  limit: number;
-  totalPages: number;
+export interface ApiResponse<T> {
+  success: boolean;
+  data: T;
 }
 
 export interface CountriesParams {
@@ -64,6 +60,14 @@ export interface PaginatedResponse<T> {
   };
 }
 
+// /api/countries paginated response
+export interface CountriesPage {
+  data: PaginatedResponse<any>;
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
 // ─── App domain ────────────────────────────────────────────────────────────
 
 export type GameMode =
