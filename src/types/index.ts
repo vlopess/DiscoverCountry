@@ -24,16 +24,25 @@ export interface RegisterPayload {
 
 // Country returned by /api/countries
 export interface Country {
-  name: string;
-  capital: string[];
-  flags: {
-    png: string;
-    svg: string;
-    alt?: string;
+  names: {
+    common: string;
+    official?: string;
   };
-  cca2?: string;
-  cca3: string;
+  codes: {
+    alpha_2: string;
+    alpha_3: string;
+  };
+  capital : string;
+  flags: {
+    url_png: string;
+    url_svg: string;
+  };
   region: string;
+  subregion?: string;
+  languages?: Array<{
+    name: string
+    native_name?: string;
+  }>;
 }
 
 export interface ApiResponse<T> {

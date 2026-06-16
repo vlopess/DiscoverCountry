@@ -3,7 +3,7 @@ import { shuffle } from './shuffle';
 
 function getValidCountries(countries: Country[]): Country[] {
   return countries.filter(
-    (c) => c.capital && c.capital.length > 0 && c.flags?.png
+    (c) => c.capital && c.capital.length > 0 && c.flags?.url_png
   );
 }
 
@@ -13,7 +13,7 @@ function getWrongOptions(
   mode: GameMode,
   count = 3
 ): string[] {
-  const pool = countries.filter((c) => c.cca3 !== correct.cca3);
+  const pool = countries.filter((c) => c.codes.alpha_2 !== correct.codes.alpha_3);
   const shuffled = shuffle(pool).slice(0, count * 3);
 
   if (mode === 'country-to-capital') {
@@ -23,7 +23,7 @@ function getWrongOptions(
       .slice(0, count);
   }
 
-  return shuffled.map((c) => c.name).slice(0, count);
+  return shuffled.map((c) => c.names.common).slice(0, count);
 }
 
 export function generateQuestion(
@@ -39,7 +39,7 @@ export function generateQuestion(
   if (mode === 'country-to-capital') {
     correctAnswer = country.capital[0];
   } else {
-    correctAnswer = country.name;
+    correctAnswer = country.names.common;
   }
 
   const wrongs = getWrongOptions(valid, country, mode);

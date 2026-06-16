@@ -21,6 +21,7 @@ interface GameState {
 }
 
 export function useGame(countries: Country[], mode: GameMode) {
+  console.log(countries);
   const { user } = useAuth();
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -31,8 +32,8 @@ export function useGame(countries: Country[], mode: GameMode) {
     while (qs.length < TOTAL_QUESTIONS && tries < 200) {
       tries++;
       const q = generateQuestion(countries, mode);
-      if (q && !seen.has(q.country.cca3)) {
-        seen.add(q.country.cca3);
+      if (q && !seen.has(q.country.codes.alpha_3)) {
+        seen.add(q.country.codes.alpha_3);
         qs.push(q);
       }
     }
@@ -94,29 +95,28 @@ export function useGame(countries: Country[], mode: GameMode) {
     }, 1000);
 
     return clearTimer;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.currentIndex, state.isFinished]);
-
   const currentQuestion = state.questions[state.currentIndex] ?? null;
   const progress = (state.currentIndex / TOTAL_QUESTIONS) * 100;
 
   const answerQuestion = useCallback(
-    (answer: string) => {
-      if (state.selectedAnswer !== null) return;
-      clearTimer();
+      (answer: string) => {
+        if (state.selectedAnswer !== null) return;
+        clearTimer();
 
-      const question = state.questions[state.currentIndex];
-      const isCorrect = answer === question.correctAnswer;
-      const newScore = isCorrect ? state.score + 1 : state.score;
+        const question = state.questions[state.currentIndex];
+        const isCorrect = answer === question.correctAnswer;
+        const newScore = isCorrect ? state.score + 1 : state.score;
 
-      setState((prev) => ({
-        ...prev,
-        selectedAnswer: answer,
-        answerState: isCorrect ? 'correct' : 'wrong',
-        score: newScore,
-      }));
-    },
-    [state, clearTimer]
+        setState((prev) => ({
+          ...prev,
+          selectedAnswer: answer,
+          answerState: isCorrect ? 'correct' : 'wrong',
+          score: newScore,
+        }));
+      },
+      [state, clearTimer]
   );
 
   const nextQuestion = useCallback(() => {
