@@ -4,6 +4,9 @@
 
 Quiz educativo de Bandeiras e Capitais de países do mundo.
 
+![status](https://img.shields.io/badge/status-stopped-yellow.svg?style=flat)
+
+
 ## Tecnologias
 
 - **React 18** + **TypeScript**
